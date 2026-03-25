@@ -1,0 +1,11 @@
+App(
+    appid="hacker_sim",
+    name="Hacker Sim",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="hacker_sim_app",
+    stack_size=2 * 1024,
+    fap_version="1.0",
+    fap_icon="A_Plugins_14",
+    fap_description="Dolphin XP grinder — a fun gamification toy that runs animated hack sequences and rewards your Dolphin with XP.",
+    fap_category="Games",
+)
