@@ -2,6 +2,9 @@
 
 **A Flipper Zero app that levels up your Dolphin by running animated "hack" sequences on screen.**
 
+<img width="1376" height="768" alt="flipper_zero_pro" src="https://github.com/user-attachments/assets/86e70cbd-9154-46d3-b31f-c37af02da733" />
+
+
 No radios. No cards. No external devices. Just your Dolphin eating XP like it's pizza. Think of it as a cookie clicker for your little digital companion.
 
 ---
