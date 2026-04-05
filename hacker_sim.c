@@ -25,7 +25,7 @@ typedef struct {
 
 static const HackSeq sequences[] = {
     {
-        "SUB-GHZ ATTACK",
+        "SUB-GHZ READ",
         DolphinDeedSubGhzSave,
         3,
         {
@@ -91,7 +91,7 @@ static const HackSeq sequences[] = {
         },
     },
     {
-        "MAYHEM: GAME WIN",
+        "GAME WIN",
         DolphinDeedPluginGameWin,
         10,
         {
@@ -123,17 +123,17 @@ typedef struct {
 
 static void hacker_sim_draw_intro(Canvas* canvas) {
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str(canvas, 14, 10, "MAYHEM HACKER SIM");
-    canvas_draw_line(canvas, 0, 12, 128, 12);
+    canvas_draw_str(canvas, 2, 8, "MAYHEM HACKER SIM");
+    canvas_draw_line(canvas, 0, 10, 127, 10);
 
     canvas_set_font(canvas, FontSecondary);
-    canvas_draw_str(canvas, 2, 24, "> Initializing subsystems");
-    canvas_draw_str(canvas, 2, 33, "> XP farmer: LOADED");
-    canvas_draw_str(canvas, 2, 42, "> Dolphin: hungry af");
-    canvas_draw_str(canvas, 2, 51, "> Ready to cause mayhem");
+    canvas_draw_str(canvas, 2, 20, "> Initializing subsystems");
+    canvas_draw_str(canvas, 2, 30, "> XP farmer: LOADED");
+    canvas_draw_str(canvas, 2, 40, "> Dolphin: hungry af");
+    canvas_draw_str(canvas, 2, 50, "> Ready to cause mayhem");
 
-    canvas_draw_line(canvas, 0, 54, 128, 54);
-    canvas_draw_str(canvas, 4, 63, "[OK] hack  [Back] exit");
+    canvas_draw_line(canvas, 0, 53, 127, 53);
+    canvas_draw_str(canvas, 2, 63, "[OK] hack  [Back] exit");
 }
 
 static void hacker_sim_draw_hacking(Canvas* canvas, HackerSim* sim) {
@@ -141,46 +141,51 @@ static void hacker_sim_draw_hacking(Canvas* canvas, HackerSim* sim) {
 
     // Header
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str(canvas, 2, 9, seq->title);
+    canvas_draw_str(canvas, 2, 8, seq->title);
     if(sim->deed_fired) {
         char xp_str[10];
         snprintf(xp_str, sizeof(xp_str), "+%d XP!", seq->xp);
-        canvas_draw_str(canvas, 92, 9, xp_str);
+        if(seq->xp < 10) {
+            canvas_draw_str(canvas, 93, 8, xp_str);
+        }
+        else {
+            canvas_draw_str(canvas, 87, 8, xp_str);
+        }
     }
-    canvas_draw_line(canvas, 0, 11, 128, 11);
+    canvas_draw_line(canvas, 0, 10, 127, 10);
 
     // Terminal lines (appear one-by-one)
     canvas_set_font(canvas, FontSecondary);
     for(uint8_t i = 0; i < sim->visible_lines && i < 4; i++) {
-        canvas_draw_str(canvas, 2, 23 + (int8_t)(i * 10), seq->lines[i]);
+        canvas_draw_str(canvas, 2, 20 + (int8_t)(i * 10), seq->lines[i]);
     }
 
     // Footer
-    canvas_draw_line(canvas, 0, 54, 128, 54);
+    canvas_draw_line(canvas, 0, 53, 127, 53);
     char footer[32];
     snprintf(footer, sizeof(footer), "Session: +%lu XP", (unsigned long)sim->session_xp);
     canvas_draw_str(canvas, 2, 63, footer);
-    canvas_draw_str(canvas, 90, 63, "[OK]skip");
+    canvas_draw_str(canvas, 91, 63, "[OK]skip");
 }
 
 static void hacker_sim_draw_done(Canvas* canvas, HackerSim* sim) {
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str(canvas, 18, 10, "SESSION COMPLETE");
-    canvas_draw_line(canvas, 0, 12, 128, 12);
+    canvas_draw_str(canvas, 2, 8, "SESSION COMPLETE");
+    canvas_draw_line(canvas, 0, 10, 127, 10);
 
     canvas_set_font(canvas, FontSecondary);
 
     char buf[32];
     snprintf(buf, sizeof(buf), "> %d hacks executed", SEQ_COUNT);
-    canvas_draw_str(canvas, 2, 25, buf);
+    canvas_draw_str(canvas, 2, 20, buf);
 
     snprintf(buf, sizeof(buf), "> XP earned: +%lu", (unsigned long)sim->session_xp);
-    canvas_draw_str(canvas, 2, 35, buf);
+    canvas_draw_str(canvas, 2, 30, buf);
 
-    canvas_draw_str(canvas, 2, 45, "> Dolphin: leveling up");
-    canvas_draw_str(canvas, 2, 55, "> Status: MAXIMUM EFFORT");
+    canvas_draw_str(canvas, 2, 40, "> Dolphin: leveling up");
+    canvas_draw_str(canvas, 2, 50, "> Status: MAXIMUM EFFORT");
 
-    canvas_draw_line(canvas, 0, 56, 128, 56);
+    canvas_draw_line(canvas, 0, 53, 127, 53);
     canvas_draw_str(canvas, 2, 63, "[OK] again  [Back] quit");
 }
 
